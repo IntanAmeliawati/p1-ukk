@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Pembayaran;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class PembayaranController extends Controller
 {
@@ -15,6 +17,7 @@ class PembayaranController extends Controller
     public function index()
     {
         //
+
     }
 
     /**
@@ -22,9 +25,10 @@ class PembayaranController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Pembayaran $pembayaran, Request $request)
     {
         //
+        
     }
 
     /**
@@ -58,6 +62,7 @@ class PembayaranController extends Controller
     public function edit(Pembayaran $pembayaran)
     {
         //
+    
     }
 
     /**

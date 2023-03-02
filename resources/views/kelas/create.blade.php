@@ -17,27 +17,18 @@
                 <div class="card-body">
                   <div class="form-group">
                   <label>Nama Kelas</label>
-                <select class="form-control" name="kelas_id" id="">
-                 <option disable selected> --Silahkan Pilih Kelas-- </option>
-                 <option value="RPL">RPL</option>
-                 <option value="TKJ">TKJ</option>
-                 <option value="TBSM">TBSM</option>
-                 <option value="TKRO">TKRO</option>
-                 <option value="DPIB">DPIB</option>
-                 <option value="TEI">TEI</option>
-                 <option value="TP">TP</option>
-                </select>
+                  <input type="text" name="nama_kelas" class="form-control" id="inputnama_kelas" placeholder="Silahkan Masukan Nama Kelas">
                   </div>
                   <div class="form-group">
                   <label>Kompetensi Keahlian</label>
-                <select class="form-control" name="kompetensi_keahlian" id="kompetensi keahlian">
-                 <option disabled selected>Silahkan Kompetensi Keahlian</option>
-                 <option value="Rekayasa Perangkat Lunak">Rekayasa Perangkat Lunak</option>
-                 <option value="Teknik Komputer Jaringan">Teknik Komputer Jaringan</option>
-                 <option value="Teknik Berbasis Sepeda Motor">Teknik Berbasis Sepeda Motor</option>
-                 <option value="Teknik Kendaran Ringan Otomotif">Teknik Kendaran Ringan Otomotif</option>
-                 <option value="Desain Pembangunan IB">Desain Pembangunan IB</option>
-                 <option value="Teknik Elektronika">Teknik Elektronika</option>
+                <select class="form-control" name="kompetensi_keahlian" id="kompetensi_keahlian">
+                    <option disabled selected>Silahkan Kompetensi Keahlian</option>
+                    <option value="RPL">Rekayasa Perangkat Lunak</option>
+                    <option value="TKJ">Teknik Komputer dan Jaringan</option>
+                    <option value="RBSM">Teknik Berbasis Sepeda Motor</option>
+                    <option value="TKRO">Teknik Kendaran Ringan Otomotif</option>
+                    <option value="DPIB">Desain Pembangunan Informasi Bangunan</option>
+                    <option value="TEI">Teknik Elektronika Industri</option>
                  </select>
                   </div>
                 <!-- /.card-body -->

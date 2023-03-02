@@ -43,8 +43,8 @@ class KelasController extends Controller
             'nama_kelas'     => 'required',
             'kompetensi_keahlian'   => 'required'
         ],[
-            'nama_kelas.required'    => 'Nama Kelas Wajib Di Isi',
-            'kompetensi_keahlian.max'         => 'Kompetensi Keahlian Wajib Di Isi',
+            'nama_kelas.required'       => 'Nama Kelas Wajib Di Isi',
+            'kompetensi_keahlian.max'   => 'Kompetensi Keahlian Wajib Di Isi',
         ]);
 
         // dd($request);
@@ -78,6 +78,8 @@ class KelasController extends Controller
     public function edit(Kelas $kelas)
     {
         //
+        $kelas = Kelas::find($kelas->id);
+        return view('kelas.edit', compact('kelas'));
     }
 
     /**
@@ -90,6 +92,15 @@ class KelasController extends Controller
     public function update(Request $request, Kelas $kelas)
     {
         //
+        $request->validate([
+            'nama_kelas' => 'required',
+            'kompetensi_keahlian' => 'required',
+        ]);
+        $kelas = Kelas::find($kelas->id);
+        $kelas->nama_kelas = $request->nama_kelas;
+        $kelas->kompetensi_keahlian = $request->kompetensi_keahlian;
+        $kelas->update();
+        return redirect('/kelas');
     }
 
     /**
@@ -101,5 +112,8 @@ class KelasController extends Controller
     public function destroy(Kelas $kelas)
     {
         //
+        $kelas = Kelas::find($kelas->id);
+        $kelas->delete();
+        return redirect('/kelas');
     }
 }

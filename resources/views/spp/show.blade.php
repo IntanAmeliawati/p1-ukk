@@ -12,16 +12,16 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form action="outlet/create" method="POST">
+              <form action="spp/create" method="POST">
                 @csrf
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="inputid">Tahun</label>
-                    <input type="integer" name="tahun" class="form-control" id="inputtahun" placeholder="Masukan Tahun" value="{{ $spps->tahun }}" disabled  >
+                    <label for="inputTahun">Tahun</label>
+                    <input type="integer" name="tahun" class="form-control" id="inputtahun" value="{{ $spps->tahun }}" disabled  >
                   </div>
                   <div class="form-group">
-                    <label for="inputNamaKelas">Nominal</label>
-                    <input type="text" name="nominal" class="form-control" id="inputnominal" placeholder="Masukan Nominal" value="{{ $spps->nominal }}" disabled>
+                    <label for="inputNominal">Nominal</label>
+                    <input type="text" name="nominal" class="form-control" id="inputnominal" value="{{ $spps->nominal }}" disabled>
                   </div>
                 </select>
                 </div>
