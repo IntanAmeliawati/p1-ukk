@@ -1,4 +1,3 @@
-
 @extends('template.master')
 
 @section('judul')
@@ -8,16 +7,14 @@
 @section ('content')
 <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Detail Spp</h3>
+                <h3 class="card-title">History Pembayaran</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form action="siswa/create" method="POST">
-                @csrf
                 <div class="card-body">
                   <div class="form-group">
                     <label for="inputNisn">Nisn</label>
-                    <input type="number" name="nisn" class="form-control" id="inputnisn" value="{{ $siswa->nisn }}" disabled  >
+                    <input type="number" name="nisn" class="form-control" id="inputnisn" value="{{ $siswa->nisn }}" disabled>
                   </div>
                 <div class="form-group">
                     <label for="input_Nis">Nis</label>
@@ -28,27 +25,57 @@
                     <input type="text" name="nama" class="form-control" id="inputnama" value="{{ $siswa->nama }}" disabled>
                   </div>
                 <div class="form-group">
-                    <label for="input_Alamat">Alamat</label>
-                    <input type="text" name="alamat" class="form-control" id="inputalamat" value="{{ $siswa->alamat }}" disabled>
-                  </div>
-                <div class="form-group">
-                    <label for="input_No_Telp">No Telp</label>
-                    <input type="number" name="no_telp" class="form-control" id="inputno_telp" value="{{ $siswa->no_telp }}" disabled>
-                  </div>
-                <div class="form-group">
                     <label for="input_Kelas_id">Kelas Id</label>
-                    <input type="" name="kelas_id" class="form-control" id="inputkelas_id" value="{{ $siswa->kelas_id }}" disabled>
+                    <input type="" name="kelas_id" class="form-control" id="inputkelas_id" value="{{ $siswa->kelas->nama_kelas }}" disabled>
                   </div>
-                <div class="form-group">
-                    <label for="input_Spp_id">Spp Id</label>
-                    <input type="" name="spps_id" class="form-control" id="inputspps_id" value="{{ $siswa->spps_id }}" disabled>
-                  </div>
-                </select>
                 </div>
-                <!-- /.card-body -->
-                <div class="card-footer">
+            </div>
+            <div class="card">
+    <div class="card-header">
+    <div class="card-tools">
+    <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+              <i class="fas fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+      <h3 class="card-title">Data Kelas</h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+      <table id="example2" class="table table-bordered table-hover">
+        <thead>
+        <tr>
+          <th>No</th>
+          <th>Tgl bayar</th>
+          <th>Bulan dibayar</th>
+          <th>Tahun dibayar</th>
+          <th>Jumlah bayar</th>
+        </tr>
+        </thead>
+        <tbody>
+          @forelse($pembayarans as $pembayaran)
+         <tr>
+          <td>{{ $loop->iteration }}</td>
+          <td>{{ $pembayaran->tgl_bayar }}</td>
+          <td>{{ $pembayaran->bulan_dibayar }}</td>
+          <td>{{ $pembayaran->tahun_dibayar }}</td>
+          <td>{{ $pembayaran->jumlah_bayar }}</td>
+        </td>
+            @csrf
+          </form>
+            </td>
+         </tr>
+         @empty
+         <tr>
+          <td>Data Masih Kosong</td>
+        </tr>
+
+        @endforelse
+      </table>
+    </div>
+    <div class="card-footer">
                 <a class="btn btn-primary" href="/siswa">Back</a>
                 </div>
-              </form>
-            </div>
 @endsection

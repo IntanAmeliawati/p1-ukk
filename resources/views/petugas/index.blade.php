@@ -1,7 +1,7 @@
 @extends('template.master')
 
 @section('judul')
-    <h1>Halaman Petugas</h1>
+    <h1>Data User</h1>
 @endsection
 
 @section('content')
@@ -12,10 +12,10 @@
               <i class="fas fa-minus"></i>
             </button>
             <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-              <i class="fas fa-times"></i>
+              <i class="fas fa-times"></i>x
             </button>
           </div>
-      <h3 class="card-title">Data Petugas</h3>
+      <h3 class="card-title">Data User</h3>
     </div>
     <!-- /.card-header -->
     <div class="card-body">
@@ -30,26 +30,24 @@
         <thead>
         <tr>
           <th>No</th>
+          <th>Nama Petugas</th>
           <th>Username</th>
-          <th>Nama</th>
           <th>Level</th>
           <th>Action</th>
         </tr>
         </thead>
         <tbody>
-          @forelse($users as $item)
+          @forelse($users as $user)
          <tr>
           <td>{{ $loop->iteration }}</td>
-          <td>{{ $item->username }}</td>
-          <td>{{ $item->nama_petugas }}</td>
-          <td>{{ $item->level }}</td>
+          <td>{{ $user->nama_petugas}}</td>
+          <td>{{ $user->level }}</td>
+          <td>{{ $user->username }}</td>
           <td>
-          <form action="{{ route ('petugas.destroy', [$item->id])}}" method="POST">
-              <a class="btn btn-info mr-3" href="petugas/{{$item->id}}">
-              <i class="fas fas fa-exclamation-circle"></i> Detail</a> 
-              <a class="btn btn-warning mr-3" href="petugas/{{$item->id}}/edit">
+          <form action="{{ route ('petugas.destroy', [$user->id])}}" method="POST">
+              <a class="btn btn-warning mr-3" href="petugas/{{$user->id}}/edit">
               <i class="fas fa-edit	"></i> Edit</a>
-              <form action="/petugas/{{$item->id}}" method="POST">
+              <form action="/petugas/{{$user->id}}" method="POST">
             @csrf
             @method('DELETE')
            <button type="submit" class="btn btn-danger" value="Delete">
@@ -59,11 +57,11 @@
           </form>
             </td>
          </tr>
-
          @empty
          <tr>
           <td>Data Masih Kosong</td>
         </tr>
+
         @endforelse
       </table>
     </div>

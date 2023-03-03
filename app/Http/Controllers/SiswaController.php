@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Siswa;
 use App\Models\Kelas;
 use App\Models\Spp;
+use App\Models\Pembayaran;
 use Illuminate\Http\Request;
 
 class SiswaController extends Controller
@@ -40,7 +41,7 @@ class SiswaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Spp $spp)
     {
         //
         $request->validate([
@@ -57,9 +58,6 @@ class SiswaController extends Controller
             'nis.max'           => 'Nis Wajib Di Isi',
             'kelas_id.required' => 'Pilih Kelas'
         ]);
-
-        // dd($request);
-
         Siswa::create([
             'nisn' => $request -> nisn,
             'nis' => $request -> nis,
@@ -67,8 +65,9 @@ class SiswaController extends Controller
             'alamat' => $request -> alamat,
             'no_telp' => $request -> no_telp,
             'kelas_id' => $request -> kelas_id,
-            'spps_id' => $request -> spps_id
+            'spps_id' => $request -> spps_id,
         ]);
+        $idspp = $spp->id;
         return redirect()->route('siswa.index');
     }
 
@@ -78,11 +77,13 @@ class SiswaController extends Controller
      * @param  \App\Models\siswa  $siswa
      * @return \Illuminate\Http\Response
      */
-    public function show(siswa $siswa)
+    public function show(siswa $siswa, pembayaran $pembayaran)
     {
         //
         $siswa = Siswa::find($siswa->id);
-        return view('siswa.show', compact('siswa'));
+        $pembayarans = Pembayaran::all();
+        return view('siswa.show', compact('siswa', 'pembayarans'));
+       
     }
 
     /**
@@ -91,11 +92,10 @@ class SiswaController extends Controller
      * @param  \App\Models\siswa  $siswa
      * @return \Illuminate\Http\Response
      */
-    public function edit(siswa $siswa)
+    public function edit(siswa $siswa,  pembayaran $pembayaran)
     {
         //
-        $siswa = Siswa::find($siswa->id);
-        return view('siswa.edit', compact('siswa'));
+        
     }
 
     /**

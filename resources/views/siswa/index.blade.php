@@ -54,9 +54,9 @@
           <td>
           <form action="{{ route ('siswa.destroy', [$siswa->id])}}" method="POST">
               <a class="btn btn-info mr-3" href="siswa/{{$siswa->id}}">
-              <i class="fas fas fa-exclamation-circle"></i> Detail</a> 
-              <a class="btn btn-warning mr-3" href="siswa/{{$siswa->id}}/edit">
-              <i class="fas fa-edit	"></i> Edit</a>
+              <i class="fas fas fa-exclamation-circle"></i> History Pembayaran</a> 
+              <a class="btn btn-warning mr-3" href="{{ route ('pembayaran.create', [$siswa->id])}}">
+              <i class="fas fa-edit	"></i> Tambah Pembayaran</a>
               <form action="/siswa/{{$siswa->id}}" method="POST">
             @csrf
             @method('DELETE')

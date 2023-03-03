@@ -11,27 +11,28 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form action="{{ route('petugas.uptade') }}" method="POST">
+              <form action="{{ route('petugas.update', $users->id) }}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class="card-body">
-                    <div class="form-group">
-                        <label for="inputid">nama_petugas</label>
-                        <input type="text" name="nama_petugas" class="form-control" id="inputusername" placeholder="Enter username" value="{{ $users->username }}" require>
+                  <div class="form-group">
+                    <label for="input_petugas">Nama Petugas</label>
+                    <a href="{{ route('petugas.update', $users->id) }}">aaa</a>
+                    <input type="text" name="nama_petugas" class="form-control" id="input_petugas" value="{{ $users->nama_petugas }}"placeholder="Silahkan Masukan Petugas">
                   </div>
-                    <div class="form-group">
-                        <label for="inputNamaKelas">Password</label>
-                        <input type="text" name="password" class="form-control" id="inputpassword" placeholder="Enter password"  value="{{ $users->password }}" require>
-                    <div class="form-group">
-                        <label for="inputid">Nama Petugas</label>
-                        <input type="text" name="nama_petugas" class="form-control" id="inputnama_petugas" placeholder="Enter nama_petugas" value="{{ $users->nama_petugas }}" require>
-                        <div class="form-group">
-                    <label for="inputid">Level</label>
-                    <input type="text" name="level" class="form-control" id="inputlevel" placeholder="Enter level" value="{{ $users->level }}" require>
+                  <div class="form-group">
+                    <label for="input_username">Username</label>
+                    <input type="text" name="username" class="form-control" id="input_username" value="{{ $users->username }}" placeholder="Silahkan Masukan Username">
                 </div>
+                  <div class="form-group">
+                    <label for="input_password">Password</label>
+                    <input type="password"  name="password" class="form-control" id="input_password" value="{{ $users->password }}" placeholder="Silahkan Masukan Password">
+                </div>
+                 
                 <!-- /.card-body -->
                 <div class="card-footer">
                   <button type="submit" class="btn btn-primary">Save</button>
+
                 </div>
               </form>
             </div>

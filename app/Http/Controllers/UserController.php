@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\User;
 
-
-class UserController extends Controller
+class usercontroller extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +15,7 @@ class UserController extends Controller
     public function index()
     {
         //
-        $users = User::all();
+        $users=User::all();
         return view('petugas.index',compact('users'));
     }
 
@@ -28,7 +27,8 @@ class UserController extends Controller
     public function create()
     {
         //
-        return view('petugas.create');
+        $users=User::all();
+        return view('petugas.create',compact('users'));
     }
 
     /**
@@ -40,19 +40,23 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
-        $data = $request->validate([
+        $request->validate([
+            'nama_petugas' => 'required',
             'username' => 'required',
             'password' => 'required',
-            'nama_petugas' => 'required',
-            'level' => 'required'
+            'level' => 'required',
         ]);
-        User::create([
-            'username' => ($data['username']),
-            'password'  => bcrypt($data['password']),
-            'nama_petugas'  => ($data['nama_petugas']),
-            'level' => ($data['level']),
-        ]);
-        return redirect()->route('petugas.index');
+        // dd($request);
+            User::create([
+                'nama_petugas' => $request->nama_petugas,
+                'username' => $request->username,
+                'password' => bcrypt('password'),
+                'level' => $request->level
+            ]);
+            return redirect()->route('petugas.index');
+           
+
+        
     }
 
     /**
@@ -65,7 +69,7 @@ class UserController extends Controller
     {
         //
         $users = User::find($user->id);
-        return view('petugas.show',compact('users'));
+        return view('petugas.show', compact('users'));
     }
 
     /**
@@ -78,7 +82,8 @@ class UserController extends Controller
     {
         //
         $users = User::find($user->id);
-        return view('petugas.edit',compact('users'));
+        return view('petugas.edit', compact('users'));
+
     }
 
     /**
@@ -88,21 +93,18 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request,User $user)
     {
         //
         $request->validate([
+            'nama_petugas' => 'required',
             'username' => 'required',
             'password' => 'required',
-            'nama_petugas' => 'required',
-            'level' => 'required'
         ]);
-
         $users = User::find($user->id);
+        $users->nama_petugas = $request->nama_petugas;
         $users->username = $request->username;
         $users->password = $request->password;
-        $users->nama_petugas = $request->nama_petugas;
-        $users->level = $request->level;
         $users->update();
         return redirect('/petugas');
     }
@@ -116,8 +118,8 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         //
-        $users = User::find($user->id);
-        $users->delete();
-        return redirect()->route('petugas.index');
+        $users = User::find( $user->id);
+         $users->delete();
+        return redirect('/petugas');
     }
 }

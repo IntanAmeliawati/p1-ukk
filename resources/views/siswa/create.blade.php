@@ -32,7 +32,7 @@
                     <input type="text" name="alamat" class="form-control" id="input_alamat" placeholder="Silahkan Masukan Alamat">
                 </div>
                   <div class="form-group">
-                    <label for="input_no_telp">No_Telp</label>
+                    <label for="input_no_telp">No Telp</label>
                     <input type="number" name="no_telp" class="form-control" id="input_no_telp" placeholder="Enter No Telp">
                 </div>
                   <div class="form-group">
